@@ -17,9 +17,12 @@ describe("SAMPLE unit test",() => {
     .send(note)
     .expect("Content-type",/json/)
     .expect(200) // THis is HTTP response
-    .end((err, res) => {
+    .then(res => {
       id = res.body._id;
       done();
+    })
+    .catch(err => {
+      console.log(err);
     });
   });
 
@@ -28,8 +31,11 @@ describe("SAMPLE unit test",() => {
     .get("/links")
     .expect("Content-type",/json/)
     .expect(200) // THis is HTTP response
-    .end((err,res) => {
+    .then(res => {
       done();
+    })
+    .catch(err => {
+      console.log(err);
     });
   });
 
@@ -38,8 +44,11 @@ describe("SAMPLE unit test",() => {
     .get("/links/" + id)
     .expect("Content-type",/json/)
     .expect(200) // THis is HTTP response
-    .end((err,res) => {
+    .then(res => {
       done();
+    })
+    .catch(err => {
+      console.log(err);
     });
   });
 
@@ -49,7 +58,11 @@ describe("SAMPLE unit test",() => {
     .send({ href: 'testhref2', name: 'testname2' })
     .expect("Content-type",/json/)
     .expect(200) // THis is HTTP response
-    .end((err,res) => {
+    .then(res => {
+      done();
+    })
+    .catch(err => {
+      console.log(err);
       done();
     });
   });
@@ -59,7 +72,11 @@ describe("SAMPLE unit test",() => {
     .del("/links/" + id)
     .expect("Content-type",/json/)
     .expect(200) // THis is HTTP response
-    .end((err,res) => {
+    .then(res => {
+      done();
+    })
+    .catch(err => {
+      console.log(err);
       done();
     });
   });
