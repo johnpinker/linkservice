@@ -4,7 +4,7 @@
   "description": "node service for linkapp",
   "main": "server.js",
   "scripts": {
-    "test": "test",
+    "test": "mocha test/test.js",
     "dev": "nodemon server.js"
   },
   "author": "John Pinkerton",
@@ -15,6 +15,9 @@
     "mongodb": "^3.3.2"
   },
   "devDependencies": {
-    "nodemon": "^1.19.2"
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.2",
+    "should": "^13.2.3",
+    "supertest": "^4.0.2"
   }
 }

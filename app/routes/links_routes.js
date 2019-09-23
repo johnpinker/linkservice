@@ -1,5 +1,5 @@
 // routes/note_routes.js
-var ObjectID = require("mongodb").ObjectID;
+const ObjectID = require("mongodb").ObjectID;
 
 module.exports = function(app, db) {  
     
@@ -27,7 +27,7 @@ module.exports = function(app, db) {
     
     app.post('/links', (req, res) => {    
         const note = { href: req.body.href, name: req.body.name };    
-        db.collection('links').insert(note, (err, result) => {      
+        db.collection('links').insertOne(note, (err, result) => {      
                 if (err) {         
                     res.send({ 'error': 'An error has occurred' });       
                 } else {        
@@ -40,7 +40,7 @@ module.exports = function(app, db) {
         const id = req.params.id;
         const details = {_id: new ObjectID(id) }
         const note = {name: req.body.name, href: req.body.href }
-        db.collection('links').update(details, note, (err, result) => {
+        db.collection('links').updateOne(details, note, (err, result) => {
             if (err) {
                 res.send({ 'error': 'An error has occurred' });  
             } else {
@@ -52,7 +52,7 @@ module.exports = function(app, db) {
     app.delete('/links/:id', (req, res) => {
         const id = req.params.id;
         const details = { _id: new ObjectID(id) }
-        db.collection('links').remove(details, (err, item) => {
+        db.collection('links').deleteOne(details, (err, item) => {
             if (err) {
                 res.send({ 'error': 'An error has occurred' });  
             } else {
